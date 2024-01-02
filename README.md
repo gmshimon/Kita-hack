@@ -8,7 +8,7 @@ git clone https://github.com/gmshimon/Kita-hack
 ### Start the frontend 
 
 ```bash
-cd frontend
+cd Frontend-app
 ```
 
 Then 
