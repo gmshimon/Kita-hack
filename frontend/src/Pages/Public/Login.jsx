@@ -1,10 +1,25 @@
 import { IoMailSharp, IoLockClosedSharp } from "react-icons/io5";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProvider";
+import { FcGoogle } from "react-icons/fc";
 
 const Login = () => {
   const [seePassword, setSeePassword] = useState(false);
+
+  const { signInWithGoogle } = useContext(AuthContext);
+
+  const handleGoogleSignIn = () => {
+    signInWithGoogle()
+      .then((result) => {
+        console.log(result.user);
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
+
   return (
     <>
       <div className="min-h-screen flex items-center justify-center p-4">
@@ -54,12 +69,21 @@ const Login = () => {
                 Login
               </button>
             </form>
-            <h1 className="text-center mt-10 font-semibold">
+            <h1 className="text-center mt-3 font-semibold">
               {"Don't have an account? "}
               <Link className="link text-primary" to={"/register"}>
                 Sign Up
               </Link>
             </h1>
+            <hr className="my-6" />
+            <div>
+              <button
+                onClick={handleGoogleSignIn}
+                className="btn mx-auto bg-transparent hover:bg-base-200 border-primary mt-3 flex items-center hover:border-primary"
+              >
+                <FcGoogle className="text-2xl"></FcGoogle> Login With Google
+              </button>
+            </div>
           </div>
         </div>
       </div>
