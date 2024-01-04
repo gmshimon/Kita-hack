@@ -5,7 +5,7 @@ const { ObjectId } = require('mongodb')
 
 const userSchema = mongoose.Schema(
   {
-    name: {
+    fullName: {
       type: String
     },
     email: {
@@ -16,10 +16,6 @@ const userSchema = mongoose.Schema(
       unique: true,
       trim: true
     },
-    imageURL: {
-      type: String,
-      required: true
-    },
     phoneNumber: {
       type: String
     },
@@ -29,6 +25,12 @@ const userSchema = mongoose.Schema(
     Admin: {
       type: Boolean,
       default: false
+    },
+    companyName: {
+      type: String
+    },
+    position: {
+      type: String
     },
     products: [
       {
@@ -41,6 +43,13 @@ const userSchema = mongoose.Schema(
     timestamps: true
   }
 )
+
+userSchema.pre('save', function (next) {
+  if (!this.Admin) {
+    this.companyName = ''
+  }
+  next()
+})
 
 const User = mongoose.model('User', userSchema)
 
