@@ -1,11 +1,13 @@
 import { Outlet } from "react-router";
+import NavBar from "./NavBar";
 
 const PublicRoot = () => {
   return (
     <>
-      <h1>MAIN HOME</h1>
-      <hr />
-      <Outlet></Outlet>
+      <NavBar></NavBar>
+      <div className="mt-24">
+        <Outlet></Outlet>
+      </div>
     </>
   );
 };
