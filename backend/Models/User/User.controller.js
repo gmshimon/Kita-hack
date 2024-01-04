@@ -21,7 +21,7 @@ module.exports.postUser = async (req, res, next) => {
 
 module.exports.getUser = async (req, res, next) => {
   try {
-    const decodedEmail = req.user
+    const decodedEmail = req.user // TODO: use the decoded email instead email
     const { email } = req.body
     const result = await User.findOne({ email })
 
@@ -50,6 +50,64 @@ module.exports.getUser = async (req, res, next) => {
     res.status(400).json({
       status: 'Fail',
       message: 'Failed to login',
+      error: error.message
+    })
+  }
+}
+
+module.exports.updateProfile = async (req, res, next) => {
+  try {
+    const { id } = req.params
+    const userDetails = req.body
+    /* const userFieldName = [
+      'fullName',
+      'phoneNumber',
+      'address',
+      'companyName',
+      'position'
+    ]
+
+    const query = { $set: {} }
+    for (const key in userDetails) {
+      const isKey = userFieldName.find(x => x === key)
+      if (!isKey)
+        return res.status(500).json({
+          status: 'Fail',
+          message: 'Failed to update user'
+        })
+      query.$set[key] = userDetails[key]
+    } */
+    const user = await User.findOne({ _id: id })
+    if (!user) {
+      return res.status(404).json({
+        status: 'Fail',
+        message: 'No user with this email'
+      })
+    }
+    const result = await User.updateOne(
+      { _id: id },
+      {
+        $set: userDetails
+      }
+    )
+    if (result.modifiedCount == 1 && !user.Admin) {
+      const result2 = await User.updateOne(
+        { _id: id },
+        {
+          $set: { companyName: '' }
+        }
+      )
+    }
+    console.log(user)
+    res.status(200).json({
+      status: 'success',
+      message: 'Verified',
+      data: result
+    })
+  } catch (error) {
+    res.status(400).json({
+      status: 'Fail',
+      message: 'Failed to update user',
       error: error.message
     })
   }
