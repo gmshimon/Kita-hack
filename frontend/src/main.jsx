@@ -11,6 +11,8 @@ import Home from "./Pages/Public/Home";
 import PrivateRoot from "./Pages/Private/PrivateRoot";
 import DashboardHome from "./Pages/Private/DashboardHome";
 import CreatePosting from "./Pages/Private/CreatePosting";
+import Login from "./Pages/Public/Login";
+import Register from "./Pages/Public/Register";
 
 const router = createBrowserRouter([
   {
@@ -38,6 +40,14 @@ const router = createBrowserRouter([
         element: <CreatePosting></CreatePosting>,
       },
     ],
+  },
+  {
+    path: "/login",
+    element: <Login></Login>,
+  },
+  {
+    path: "/register",
+    element: <Register></Register>,
   },
 ]);
 
