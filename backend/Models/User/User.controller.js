@@ -94,7 +94,7 @@ module.exports.updateProfile = async (req, res, next) => {
       const result2 = await User.updateOne(
         { _id: id },
         {
-          $set: { companyName: '' }
+          $set: { companyName: '', position: '' }
         }
       )
     }

@@ -47,6 +47,7 @@ const userSchema = mongoose.Schema(
 userSchema.pre('save', function (next) {
   if (!this.Admin) {
     this.companyName = ''
+    this.position = ''
   }
   next()
 })
