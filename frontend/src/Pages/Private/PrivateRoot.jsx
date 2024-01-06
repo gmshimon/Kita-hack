@@ -4,8 +4,7 @@ import DashboardHome from "./DashboardHome";
 const PrivateRoot = () => {
   return (
     <>
-      <DashboardHome></DashboardHome>
-      <Outlet></Outlet>
+
     </>
   );
 };

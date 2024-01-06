@@ -14,6 +14,9 @@ import CreatePosting from "./Pages/Private/CreatePosting";
 import Login from "./Pages/Public/Login";
 import Register from "./Pages/Public/Register";
 import ProductDetail from "./Pages/Private/ProductDetail";
+import Analytics from "./Pages/Private/Analytics";
+import MyBidding from "./Pages/Private/MyBidding";
+import CreateBidding from "./Pages/Private/CreateBidding";
 
 const router = createBrowserRouter([
   {
@@ -30,12 +33,24 @@ const router = createBrowserRouter([
   // PRIVATE
   {
     path: "/dashboard",
-    element: <PrivateRoot></PrivateRoot>,
+    element: <DashboardHome></DashboardHome>,
     children: [
 
       {
         path: "/dashboard/create-posting",
         element: <CreatePosting></CreatePosting>,
+      },
+      {
+        path: "/dashboard/analytics",
+        element: <Analytics></Analytics>,
+      },
+      {
+        path: "/dashboard/myBidding",
+        element: <MyBidding></MyBidding>,
+      },
+      {
+        path: "/dashboard/createBidding",
+        element: <CreateBidding></CreateBidding>,
       },
     ],
   },
