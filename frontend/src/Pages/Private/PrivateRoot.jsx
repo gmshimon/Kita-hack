@@ -1,11 +1,10 @@
 import { Outlet } from "react-router";
+import DashboardHome from "./DashboardHome";
 
 const PrivateRoot = () => {
   return (
     <>
-      {/* DASHBOARD CODE GOES HERE */}
-      <h1>Private Root</h1>
-      <Outlet></Outlet>
+
     </>
   );
 };
