@@ -18,7 +18,6 @@ import ProductDetail from "./Pages/Private/ProductDetail";
 import Analytics from "./Pages/Private/Analytics";
 import MyBidding from "./Pages/Private/MyBidding";
 import CreateBidding from "./Pages/Private/CreateBidding";
-import AuthProvider from "./providers/AuthProvider";
 
 const router = createBrowserRouter([
   {
@@ -74,11 +73,7 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <AuthProvider>
-<<<<<<< HEAD
-      <RouterProvider router={router} />
-=======
       <RouterProvider router={router}></RouterProvider>
->>>>>>> aae21305efa5663d825685c5df5f2f57c3cd7f41
     </AuthProvider>
   </React.StrictMode>
 );
