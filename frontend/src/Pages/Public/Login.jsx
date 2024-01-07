@@ -1,18 +1,34 @@
 import { IoMailSharp, IoLockClosedSharp } from "react-icons/io5";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProvider";
+import { FcGoogle } from "react-icons/fc";
 
 const Login = () => {
   const [seePassword, setSeePassword] = useState(false);
+
+  const { signInWithGoogle } = useContext(AuthContext);
+
+  const handleGoogleSignIn = () => {
+    signInWithGoogle()
+      .then((result) => {
+        console.log(result.user);
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
+
   return (
     <>
-      <div className="min-h-screen flex items-center justify-center p-4">
+      <div className="min-h-screen flex justify-center p-24">
         <div className="max-w-sm w-full flex flex-col items-center gap-2">
           <img src="/logo.png" className="max-w-40 mr-6" />
           {/* FORM CONTAINER */}
           <div className="w-full font-heading mt-6">
-            <h1 className="text-center font-semibold text-4xl">Login</h1>
+            <h1 className="text-center font-semibold text-4xl mb-6">Login</h1>
+            <hr className="mb-3" />
             <form className="mt-6">
               {/* EMAIL INPUT */}
               <div className="relative mb-3">
@@ -54,12 +70,21 @@ const Login = () => {
                 Login
               </button>
             </form>
-            <h1 className="text-center mt-10 font-semibold">
+            <h1 className="text-center mt-3 font-semibold flex items-center justify-center">
               {"Don't have an account? "}
               <Link className="link text-primary" to={"/register"}>
                 Sign Up
               </Link>
             </h1>
+            <hr className="my-6" />
+            <div>
+              <button
+                onClick={handleGoogleSignIn}
+                className="btn mx-auto bg-transparent hover:bg-base-200 border-primary mt-3 flex items-center hover:border-primary"
+              >
+                <FcGoogle className="text-2xl"></FcGoogle> Login With Google
+              </button>
+            </div>
           </div>
         </div>
       </div>
