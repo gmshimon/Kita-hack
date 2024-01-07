@@ -12,7 +12,10 @@
   "dependencies": {
     "aos": "^3.0.0-beta.6",
     "firebase": "^10.7.1",
+<<<<<<< HEAD
     "framer-motion": "^10.17.9",
+=======
+>>>>>>> aae21305efa5663d825685c5df5f2f57c3cd7f41
     "localforage": "^1.10.0",
     "lucide-react": "^0.305.0",
     "match-sorter": "^6.3.1",

@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import AuthProvider from "./providers/AuthProvider";
 
 // PUBLIC IMPORTS
 import PublicRoot from "./Pages/Public/PublicRoot";
@@ -73,7 +74,11 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <AuthProvider>
+<<<<<<< HEAD
       <RouterProvider router={router} />
+=======
+      <RouterProvider router={router}></RouterProvider>
+>>>>>>> aae21305efa5663d825685c5df5f2f57c3cd7f41
     </AuthProvider>
   </React.StrictMode>
 );

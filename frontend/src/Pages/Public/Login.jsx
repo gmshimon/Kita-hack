@@ -70,7 +70,11 @@ const Login = () => {
                 Login
               </button>
             </form>
+<<<<<<< HEAD
             <h1 className="text-center mt-3 font-semibold flex items-center justify-center">
+=======
+            <h1 className="text-center mt-3 font-semibold">
+>>>>>>> aae21305efa5663d825685c5df5f2f57c3cd7f41
               {"Don't have an account? "}
               <Link className="link text-primary" to={"/register"}>
                 Sign Up
