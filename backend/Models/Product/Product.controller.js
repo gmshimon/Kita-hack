@@ -54,3 +54,31 @@ module.exports.postProducts = async (req, res, next) => {
     })
   }
 }
+
+module.exports.getAllProducts = async (req, res, next) => {
+  try {
+    const result = await Product.find({})
+      .populate({
+        path: 'createdBy',
+        select: 'fullName email _id position'
+      })
+      .populate({
+        path: 'bids.company',
+        select: 'fullName email _id companyName'
+      })
+    console.log(result)
+    // result.map(pro=>{
+
+    // })
+    res.status(200).json({
+      status: 'success',
+      message: 'Product found successfully',
+      data: result
+    })
+  } catch (error) {
+    res.status(400).json({
+      status: 'Fail',
+      message: 'Fail to Fetch food'
+    })
+  }
+}
