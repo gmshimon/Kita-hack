@@ -16,10 +16,8 @@ module.exports = async (req, res, next) => {
         message: 'You are not login'
       })
     }
-    console.log(token)
     const decoded = await admin.auth().verifyIdToken(token)
     req.user = decoded.email
-    console.log(user)
     next()
   } catch (err) {
     res.status(403).json({

@@ -28,6 +28,7 @@ const Register = () => {
     email: '',
     phoneNumber: '',
     Admin: true,
+    role:'buyer',
     position: '',
     companyName: ''
   })
