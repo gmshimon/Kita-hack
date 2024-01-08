@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import AuthProvider from "./providers/AuthProvider";
+
 
 // PUBLIC IMPORTS
 import PublicRoot from "./Pages/Public/PublicRoot";
@@ -18,6 +18,8 @@ import ProductDetail from "./Pages/Private/ProductDetail";
 import Analytics from "./Pages/Private/Analytics";
 import MyBidding from "./Pages/Private/MyBidding";
 import CreateBidding from "./Pages/Private/CreateBidding";
+import AuthProvider from "./Pages/Private/providers/AuthProvider";
+import PrivateRoute from "./Pages/Private/providers/PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -55,10 +57,9 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/product/:productId",
-    element: <ProductDetail></ProductDetail>,
-    loader: ({ params }) =>
-      fetch(`http://localhost:5173/product/${params.productId}`),
+    path: '/product/:productId',
+    element: <PrivateRoute><ProductDetail></ProductDetail></PrivateRoute>,
+    loader: ({ params }) => fetch(`http://localhost:5173/product/${params.productId}`)
   },
   {
     path: "/login",
@@ -73,7 +74,7 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <AuthProvider>
-      <RouterProvider router={router}></RouterProvider>
+      <RouterProvider router={router} />
     </AuthProvider>
   </React.StrictMode>
 );
