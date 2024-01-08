@@ -19,25 +19,29 @@ const ProductDetail = () => {
     }
 
 
-    const { id, name, ShortDescription, image } = product;
+    const { id, name, description, price, image } = product;
 
     return (
-        <div className='flex justify-center items-center p-10' >
-            {/* <h1>{product.name}</h1> */}
-
-            <div className=" flex flex-col text-gray-700 bg-blue-gray-100 shadow-md w-96 rounded-xl bg-clip-border " data-aos="zoom-in">
-                <div className=" overflow-hidden text-white shadow-lg rounded-xl bg-blue-gray-500 bg-clip-border shadow-blue-gray-500/40 object-cover">
-                    <img className="aspect-video h-full w-full object-cover rounded-tr-lg rounded-tl-lg md:rounded-bl-lg md:rounded-tr-none " src={product.image} alt="" />
-                </div>
-                <div className="p-4">
-                    <h5 className="block mb-2  text-xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
-                        {/* {product.LongDescription} */}
-                    </h5>
-
-                </div>
+        <div className='container mx-auto flex flex-col justify-between lg:flex-row gap-16 lg:items-center'>
+            <div className='lg:w-2/4'>
+                <img src='https://t4.ftcdn.net/jpg/02/24/11/57/240_F_224115780_2ssvcCoTfQrx68Qsl5NxtVIDFWKtAgq2.jpg' alt="" className='w-full h-full aspect-square object-cover rounded-xl' />
 
             </div>
 
+            <div className='flex flex-col gap-4 lg:w-2/4'>
+                <div>
+
+                    <h1 className='text-3xl font-bold font-text'>{name}OLA </h1>
+                </div>
+                <p className='text-lg font-text'>
+                    {description}party party party
+                </p>
+                <h6 className='text-2xl font-semibold'>RM {price}</h6>
+                <div className='flex flex-row items-center '>
+
+                    <button className='bg-primary text-white font-semibold py-3 px-16 rounded-xl h-full'>Start Bidding</button>
+                </div>
+            </div>
         </div>
     );
 };
