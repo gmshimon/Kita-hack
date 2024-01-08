@@ -39,11 +39,11 @@ const ProductSchema = mongoose.Schema({
     minLength: [3, 'Name must be at least 3 characters']
   },
   weight: {
-    type: String,
+    type: Number,
     required: [true, 'Please provide item weight']
   },
   starting_price: {
-    type: String,
+    type: Number,
     required: [true, 'Please provide starting price']
   },
   imageURL: {
