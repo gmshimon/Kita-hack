@@ -2,7 +2,7 @@ import { IoMailSharp, IoLockClosedSharp } from "react-icons/io5";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../Pages/Private/providers/AuthProvider";
+import { AuthContext } from "../../providers/AuthProvider";
 import { FcGoogle } from "react-icons/fc";
 
 const Login = () => {
@@ -10,47 +10,47 @@ const Login = () => {
 
   const { signInWithGoogle, signInUser } = useContext(AuthContext);
 
-  const [loginError, setLoginError] = useState('');
-  const [success, setSuccess] = useState('');
+  const [loginError, setLoginError] = useState("");
+  const [success, setSuccess] = useState("");
   const navigate = useNavigate();
-
-
 
   const handleGoogleSignIn = () => {
     signInWithGoogle()
       .then((result) => {
         console.log(result.user);
-        navigate('/')
+        navigate("/");
       })
       .catch((error) => {
         console.log(error.message);
       });
   };
 
-  const handleLogin = e => {
+  const handleLogin = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
     console.log(email, password);
 
     signInUser(email, password)
-      .then(result => {
-        console.log(result.user)
-        setSuccess('Logged In Successfully')
+      .then((result) => {
+        console.log(result.user);
+        setSuccess("Logged In Successfully");
         e.target.reset();
-        navigate('/')
+        navigate("/");
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
-        if (error.code === 'auth/invalid-login-credentials') {
-          setLoginError("Invalid email or password. Please check your credentials.");
+        if (error.code === "auth/invalid-login-credentials") {
+          setLoginError(
+            "Invalid email or password. Please check your credentials."
+          );
         } else {
           setLoginError(error.message);
         }
       });
 
-    setLoginError('');
-    setSuccess('');
+    setLoginError("");
+    setSuccess("");
 
     if (!email) {
       setLoginError("Email does not match");
@@ -58,13 +58,10 @@ const Login = () => {
     }
 
     if (!password) {
-      setLoginError("Password does not match")
+      setLoginError("Password does not match");
       return;
     }
-
-  }
-
-
+  };
 
   return (
     <>
@@ -135,12 +132,8 @@ const Login = () => {
               </button>
             </div>
           </div>
-          {
-            loginError && <p className="text-red-500">{loginError}</p>
-          }
-          {
-            success && <p className="text-green-500">{success}</p>
-          }
+          {loginError && <p className="text-red-500">{loginError}</p>}
+          {success && <p className="text-green-500">{success}</p>}
         </div>
       </div>
     </>
