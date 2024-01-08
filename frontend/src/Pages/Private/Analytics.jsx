@@ -1,11 +1,23 @@
-import React from 'react';
+import useRole from "../../hooks/useRole";
 
 const Analytics = () => {
+  const { userRole } = useRole();
+
+  if (userRole === "seller") {
     return (
-        <div>
-            <h2>Analytics</h2>
-        </div>
+      <>
+        <h1>SELLER ANALYTICS</h1>
+      </>
     );
+  }
+
+  if (userRole === "buyer") {
+    return (
+      <>
+        <h1>BUYER ANALYTICS</h1>
+      </>
+    );
+  }
 };
 
 export default Analytics;
