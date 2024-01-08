@@ -10,6 +10,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import PropTypes from "prop-types";
+import { postUser } from "../utilis/queries";
 
 export const AuthContext = createContext(null);
 
@@ -17,11 +18,26 @@ const googleProvider = new GoogleAuthProvider();
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [error,setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const createUser = (email, password) => {
+  const createUser =  (obj,password) => {
     setLoading(true);
-    return createUserWithEmailAndPassword(auth, email, password);
+    createUserWithEmailAndPassword(auth, obj.email, password)
+    .then(res=>{
+      if(res?._tokenResponse?.idToken){
+        localStorage.setItem('userToken', JSON.stringify({
+          token:res?._tokenResponse?.idToken
+        }))
+        const {returnData,error} = postUser(obj)
+        console.log("returnData: ",returnData)
+        setUser(returnData)
+        if(error)setError(error)
+      }
+    }).catch(error=>{
+      setError(error.message)
+    })
+    return{user,error}
   };
 
   const addUsernamePhoto = (username, photoURL) => {

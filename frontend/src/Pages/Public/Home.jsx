@@ -1,6 +1,12 @@
+import { useEffect } from "react";
 import MainPageCard from "./Cards/MainPageCard";
+import { get } from "../../utilis/queries";
 
 const Home = () => {
+  useEffect(()=>{
+    const {returnData} = get("products")
+    console.log(returnData)
+  },[])
   return (
     <>
       <div className="relative flex flex-col items-center justify-center">

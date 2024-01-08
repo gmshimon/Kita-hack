@@ -14,7 +14,7 @@ module.exports.postUser = async (req, res, next) => {
     res.status(400).json({
       status: 'Fail',
       message: 'Failed to insert User',
-      error: error.message
+      error: error.message.split(":")[1]
     })
   }
 }

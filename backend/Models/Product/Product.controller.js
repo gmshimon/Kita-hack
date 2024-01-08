@@ -66,7 +66,6 @@ module.exports.getAllProducts = async (req, res, next) => {
         path: 'bids.company',
         select: 'fullName email _id companyName'
       })
-    console.log(result)
     // result.map(pro=>{
 
     // })
