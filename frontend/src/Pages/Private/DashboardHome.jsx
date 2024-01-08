@@ -178,7 +178,7 @@ const DashboardHome = () => {
         </div>
 
         {/* main content */}
-        <div className="max-w-5xl flex-1 mx-auto py-4">
+        <div className="max-w-5xl mx-auto flex-1 py-4 pr-4">
           <Outlet></Outlet>
         </div>
       </div>
