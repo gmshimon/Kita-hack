@@ -18,7 +18,7 @@ const Register = () => {
 
   return (
     <>
-      <div className="min-h-screen flex items-center justify-center p-4">
+      <div className="min-h-screen flex justify-center p-24">
         <div className="max-w-sm w-full flex flex-col items-center gap-2">
           <img src="/logo.png" className="max-w-40 mr-6" />
           {/* FORM CONTAINER */}

@@ -1,21 +1,24 @@
 import { Link, NavLink } from "react-router-dom";
 import Logo from "../Logo/Logo";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { FaSignOutAlt, FaTimes, FaUserAlt } from "react-icons/fa";
 import { CiMenuFries } from "react-icons/ci";
 import { MdDashboard } from "react-icons/md";
+import { AuthContext } from "../Private/providers/AuthProvider";
 
 const NavBar = () => {
 
-    const user = '1';
-
-
+    const { user, logOut } = useContext(AuthContext)
 
     const [click, setClick] = useState(false);
     const handleClick = () => setClick(!click);
 
+    const handleLogOut = () =>
+        logOut()
+            .then(() => console.log("User logged out"))
+            .catch(error => console.log(error))
 
-
+    console.log(user)
 
     const navItems =
         <>
@@ -25,7 +28,36 @@ const NavBar = () => {
                     <li>
                         <div>
                             {
-                                user ? <>
+                                user ?
+                                    <>
+
+                                        <div className="gap-2 flex flex-col md:flex-row items-center hover:bg-primary  rounded-lg ">
+                                            <div className=" flex justify-center ">
+
+                                                <div className="dropdown dropdown-bottom dropdown-center text-text">
+                                                    <label tabIndex={0} className=" m-1">
+                                                        <img
+                                                            className="relative  inline-block w-12 aspect-square rounded-md object-cover object-center "
+                                                            alt="Image placeholder"
+                                                            src={user.photoURL}
+                                                        />
+                                                    </label>
+                                                    <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+                                                        <li><h2 className=""><FaUserAlt />{user.displayName}</h2></li>
+                                                        <Link to='/dashboard'> <li><button className="  px-2 rounded-lg" ><MdDashboard />DashBoard</button></li></Link>
+                                                        <li><button className="  px-2 rounded-lg" onClick={handleLogOut}><FaSignOutAlt />Sign Out</button></li>
+                                                    </ul>
+                                                </div>
+
+
+                                            </div>
+
+                                        </div>
+
+
+                                    </>
+
+                                    :
 
                                     <div className="my-4 py-4 border-b font-semibold hover:text-white border-primary">
 
@@ -41,9 +73,7 @@ const NavBar = () => {
 
                                     </div>
 
-                                </>
-                                    :
-                                    <NavLink className="hover:bg-black  px-2 rounded-lg" >Sign Out</NavLink>
+
                             }
                         </div>
                     </li>
@@ -106,13 +136,13 @@ const NavBar = () => {
                                                     <img
                                                         className="relative  inline-block w-12 aspect-square rounded-md object-cover object-center "
                                                         alt="Image placeholder"
-                                                        src='https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8d29tYW4lMjBwcm9maWxlfGVufDB8fDB8fHww'
+                                                        src={user.photoURL}
                                                     />
                                                 </label>
                                                 <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-                                                    <li><h2 className=""><FaUserAlt />asd</h2></li>
-                                                    <Link to='/dashboard/DashBoard'> <li><button className="  px-2 rounded-lg" ><MdDashboard />DashBoard</button></li></Link>
-                                                    {/* <li><button className="  px-2 rounded-lg" onClick={handleLogOut}><FaSignOutAlt />Sign Out</button></li> */}
+                                                    <li><h2 className=""><FaUserAlt />{user.displayName}</h2></li>
+                                                    <Link to='/dashboard'> <li><button className="  px-2 rounded-lg" ><MdDashboard />DashBoard</button></li></Link>
+                                                    <li><button className="  px-2 rounded-lg" onClick={handleLogOut}><FaSignOutAlt />Sign Out</button></li>
                                                 </ul>
                                             </div>
 
@@ -123,7 +153,7 @@ const NavBar = () => {
 
                                 </>
                                     :
-                                    <NavLink className="hover:bg-black  px-2 rounded-lg" >Sign Up</NavLink>
+                                    <NavLink className="hover:bg-black  px-2 rounded-lg" to='/register' >Sign Up</NavLink>
                             }
 
 
