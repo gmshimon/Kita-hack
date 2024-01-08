@@ -9,12 +9,20 @@ import {
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { FaBuilding } from "react-icons/fa6";
 import { BsLadder } from "react-icons/bs";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const Register = () => {
   const [seePassword, setSeePassword] = useState(false);
   const [userType, setUserType] = useState("");
+
+  // FIREBASE FUNCTION FOR REGISTERING
+  const { createUser } = useContext(AuthContext);
+
+  const handleSignUp = () => {
+    // LOGIN FOR REGISTERING USING FIREBASE
+  };
 
   return (
     <>
