@@ -1,12 +1,12 @@
 import useRole from "../../hooks/useRole";
 
-const Analytics = () => {
+const DashboardMain = () => {
   const { userRole } = useRole();
 
   if (userRole === "seller") {
     return (
       <>
-        <h1>SELLER ANALYTICS</h1>
+        <h1>SELLER HOME</h1>
       </>
     );
   }
@@ -14,10 +14,10 @@ const Analytics = () => {
   if (userRole === "buyer") {
     return (
       <>
-        <h1>BUYER ANALYTICS</h1>
+        <h1>BUYER HOME</h1>
       </>
     );
   }
 };
 
-export default Analytics;
+export default DashboardMain;
