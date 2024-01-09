@@ -112,3 +112,25 @@ module.exports.updateProfile = async (req, res, next) => {
     })
   }
 }
+
+module.exports.getMyBid = async (req,res,next)=>{
+  try {
+    const email = req.user
+
+    const user = await User.findOne({ email: email}).select("-products -createdAt -updatedAt -__v").populate({
+      path:'bids.product',
+      select:"name imageURL starting_price starting_time bidding_duration location"
+    })
+    res.status(200).json({
+      status: 'success',
+      message: 'Data saved successfully',
+      data: user
+    })
+  } catch (error) {
+    res.status(400).json({
+      status: 'Fail',
+      message: 'Failed to fetch data',
+      error: error.message
+    })
+  }
+}

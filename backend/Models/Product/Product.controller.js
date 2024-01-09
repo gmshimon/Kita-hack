@@ -210,6 +210,12 @@ module.exports.makeBidding = async (req, res, next) => {
         message: 'Failed to update the bidding'
       })
     }
+    const updateUser = await User.updateOne({_id: user._id},
+      {$push:{bids:{
+        product: product._id,
+        price:body.price
+      }}}
+      )
     res.status(200).json({
       status: 'success',
       message: product
@@ -229,7 +235,7 @@ module.exports.getUserBidding = async (req,res,next)=>{
 
     const user = await User.findOne({ email: email})
     const result = await Product.findOne({createdBy:user?._id})
-    
+
     const dateCompare = compareDate(
       result.starting_time,
       result.bidding_duration

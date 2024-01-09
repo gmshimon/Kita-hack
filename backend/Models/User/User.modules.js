@@ -3,6 +3,19 @@ const validator = require('validator')
 const bcrypt = require('bcrypt')
 const { ObjectId } = require('mongodb')
 
+
+function getTodaysDate () {
+  const today = new Date()
+  const year = today.getFullYear()
+  const month = today.getMonth() + 1 // Months are zero-based
+  const day = today.getDate()
+
+  const todaysDate = `${year}-${month < 10 ? '0' + month : month}-${
+    day < 10 ? '0' + day : day
+  }`
+  return todaysDate
+}
+
 const userSchema = mongoose.Schema(
   {
     fullName: {
@@ -22,9 +35,9 @@ const userSchema = mongoose.Schema(
     address: {
       type: String
     },
-    role:{
+    role: {
       type: String,
-      enum :['seller','buyer'],
+      enum: ['seller', 'buyer'],
       default: 'seller'
     },
     Admin: {
@@ -37,6 +50,21 @@ const userSchema = mongoose.Schema(
     position: {
       type: String
     },
+    bids: [
+      {
+        product:{
+          type: ObjectId,
+          ref: 'products'
+        },
+        price:{
+          type: Number,
+        },
+        date:{
+          type:String,
+          default:getTodaysDate()
+        },
+      }
+    ],
     products: [
       {
         type: ObjectId,
