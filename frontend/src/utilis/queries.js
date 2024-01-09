@@ -33,6 +33,7 @@ export const get = async(url)=>{
     })
     .then(res=>res.json())
     .then(data=>{
+        console.log(data)
         if(data.status!==200)
             error=true
         returnData = data.data

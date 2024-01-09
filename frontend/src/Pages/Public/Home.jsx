@@ -1,12 +1,13 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import MainPageCard from "./HomeSections/MainPageCard";
 import Banner from "./HomeSections/Banner";
 import { get } from "../../utilis/queries";
 
 const Home = () => {
+  const [bids,setBids] = useState([])
   useEffect(() => {
     const { returnData } = get("products");
-    console.log(returnData);
+    setBids(returnData);
   }, []);
 
   return (
