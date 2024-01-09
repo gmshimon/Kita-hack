@@ -7,6 +7,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import PublicRoot from "./Pages/Public/PublicRoot";
 import Home from "./Pages/Public/Home";
 import AllBiddings from "./Pages/Public/AllBiddings";
+import Solutions from "./Pages/Public/Solutions";
 
 // PRIVATE IMPORTS
 import DashboardHome from "./Pages/Private/DashboardHome";
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
       {
         path: "/all-biddings",
         element: <AllBiddings></AllBiddings>,
+      },
+      {
+        path: "/solution",
+        element: <Solutions></Solutions>,
       },
       {
         path: "/product/:productId",
