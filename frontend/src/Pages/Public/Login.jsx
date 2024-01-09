@@ -68,7 +68,7 @@ const Login = () => {
     <>
       <div className="min-h-screen flex justify-center p-24">
         <div className="max-w-sm w-full flex flex-col items-center gap-2">
-          <img src="/logo.png" className="max-w-40 mr-6" />
+          <Link to='/'> <img src="/logo.png" className="max-w-40 mr-6" /></Link>
           {/* FORM CONTAINER */}
           <div className="w-full font-heading mt-6">
             <h1 className="text-center font-semibold text-4xl mb-6">Login</h1>
