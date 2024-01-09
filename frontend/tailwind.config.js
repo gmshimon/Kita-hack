@@ -4,11 +4,11 @@ export default {
   theme: {
     extend: {
       colors: {
-        text: '#120904',
-        background: '#ffffff',
-        primary: '#4F6F52',
-        secondary: '#ECE3CE',
-        accent: '#776B5D',
+        text: "#120904",
+        background: "#ffffff",
+        primary: "#4F6F52",
+        secondary: "#ECE3CE",
+        accent: "#F6B740",
       },
       fontFamily: {
         heading: ["Work Sans"],
