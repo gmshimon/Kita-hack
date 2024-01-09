@@ -1,11 +1,11 @@
 const express = require('express')
 const uploader = require('../../Middleware/fileUpload/uploader')
-const { postProducts, getAllProducts, getSingleProduct, makeBidding } = require('./Product.controller')
+const { postProducts, getAllProducts, getSingleProduct, makeBidding, getUserBidding } = require('./Product.controller')
 const verifyToken = require('../../Middleware/verifyToken')
 
 const router = express.Router()
 
-router.route("/:id").get(getSingleProduct)
+router.route('/user-bidding').get(verifyToken,getUserBidding)
 
 // TODO : use verify token
 router.route('/create-product').post(uploader.single('image'),verifyToken ,postProducts)
@@ -13,5 +13,6 @@ router.route('/create-product').post(uploader.single('image'),verifyToken ,postP
 router.route('/').get(getAllProducts)
 
 router.route('/make-bidding').post(verifyToken,makeBidding)
+router.route("/:id").get(getSingleProduct)
 
 module.exports = router

@@ -4,7 +4,7 @@ import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import { FcGoogle } from "react-icons/fc";
-import { postUser } from "../../../../backend/Models/User/User.controller";
+import { postUser } from "../../utilis/queries";
 
 const Login = () => {
   const [seePassword, setSeePassword] = useState(false);

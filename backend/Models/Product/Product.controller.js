@@ -221,3 +221,60 @@ module.exports.makeBidding = async (req, res, next) => {
     })
   }
 }
+
+
+module.exports.getUserBidding = async (req,res,next)=>{
+  try {
+    const email = req.user
+
+    const user = await User.findOne({ email: email})
+    const result = await Product.findOne({createdBy:user?._id})
+    
+    const dateCompare = compareDate(
+      result.starting_time,
+      result.bidding_duration
+    )
+    if (!dateCompare) {
+      const maxBid = result.bids.reduce(
+        (max, bid) => (bid.price > max.price ? bid : max),
+        bids[0]
+      )
+      const updateDate = await Product.updateOne(
+        { _id: id },
+        {
+          $set: {
+            active: false,
+            winner: {
+              company: maxBid?.company,
+              price: maxBid.price,
+              date: maxBid.date
+            }
+          }
+        }
+      )
+    }
+
+    const product = await Product.findOne({createdBy:user?._id}).populate({
+      path: 'createdBy',
+      select: 'fullName email _id position'
+    })
+    .populate({
+      path:'winner.company',
+      select: 'fullName email _id companyName'
+    })
+    .populate({
+      path: 'bids.company',
+      select: 'fullName email _id companyName'
+    })
+    res.status(200).json({
+      status:"success",
+      message:"Product was successfully fetched",
+      data:product
+    })
+  } catch (error) {
+    res.status(400).json({
+      status: 'Fail',
+      message: error
+    })
+  }
+}
