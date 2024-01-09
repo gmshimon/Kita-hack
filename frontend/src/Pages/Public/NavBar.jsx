@@ -178,7 +178,7 @@ const NavBar = () => {
                   </>
                 ) : (
                   <NavLink
-                    className="hover:bg-black  px-2 rounded-lg"
+                    className="hover:text-primary transition border-b-2 border-transparent hover:border-primary cursor-pointer"
                     to="/register"
                   >
                     Sign Up
