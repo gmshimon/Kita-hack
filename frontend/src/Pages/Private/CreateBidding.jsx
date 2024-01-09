@@ -18,8 +18,20 @@ const CreateBidding = () => {
 
     if (res.data.success) {
       // LOGIC AFTER IMAGE IS HOSTED SUCCESSFULLY
+      const today = new Date();
+      const startingTime = new Date(data.starting_time);
+      const endTime = new Date(startingTime.getTime() + data.bidding_duration * 24 * 60 * 60 * 1000);
+
+      if (today < startingTime) {
+        data["postStatus"] = "published";
+      } else if (today >= startingTime && today <= endTime) {
+
+        data["postStatus"] = "ongoing";
+      }
+
+
       data["image"] = res.data.data.display_url;
-      data["status"] = "draft";
+      // data["status"] = "draft";
 
       // DATA FROM FORM
       console.log(data);
