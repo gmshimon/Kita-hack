@@ -48,11 +48,17 @@ const ProductDetail = () => {
                         {/* title */}
                         <h1 className='text-3xl font-bold font-text'>{name}Organic Manure - Fresh Harvest </h1>
                     </div>
+
                     <p className='text-lg font-text'>
                         {description}Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda laudantium illo tempora doloremque hic? Sed earum veniam temporibus
 
                     </p>
-                    <h6 className='text-2xl font-semibold'>RM {price}</h6>
+
+                    <div className='flex justify-between'>
+                        <h6 className='text-2xl font-semibold'>RM {price}</h6>
+                        <h5 className='text-xl font-medium'>Weight:</h5>
+                        <h4 className='text-xl font-medium'>Location-</h4>
+                    </div>
                     <div className='flex flex-row items-center '>
 
                         <button className='bg-primary text-white font-semibold py-3 px-16 rounded-xl h-full'>Start Bidding</button>
