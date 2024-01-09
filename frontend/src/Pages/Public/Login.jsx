@@ -4,6 +4,7 @@ import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import { FcGoogle } from "react-icons/fc";
+import { postUser } from "../../../../backend/Models/User/User.controller";
 
 const Login = () => {
   const [seePassword, setSeePassword] = useState(false);
@@ -19,6 +20,12 @@ const Login = () => {
     signInWithGoogle()
       .then((result) => {
         console.log(result.user);
+        if(result?.user?.accessToken){
+          localStorage.setItem('userToken', JSON.stringify({
+            token:result?.user?.accessToken
+          }))
+          postUser({email:result?.user?.email})
+        }
         navigate("/");
       })
       .catch((error) => {
@@ -34,9 +41,14 @@ const Login = () => {
 
     signInUser(email, password)
       .then((result) => {
-        console.log(result.user);
         setSuccess("Logged In Successfully");
         e.target.reset();
+        if(result?.user?.accessToken){
+          localStorage.setItem('userToken', JSON.stringify({
+            token:result?.user?.accessToken
+          }))
+        }
+
         navigate("/");
       })
       .catch((error) => {

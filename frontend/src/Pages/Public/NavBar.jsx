@@ -15,7 +15,10 @@ const NavBar = () => {
 
   const handleLogOut = () =>
     logOut()
-      .then(() => console.log("User logged out"))
+      .then(() => {
+        console.log("User logged out")
+        localStorage.removeItem("userToken")
+      })
       .catch((error) => console.log(error));
 
   console.log(user);

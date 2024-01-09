@@ -1,6 +1,8 @@
+import { useState } from 'react'
 import { useForm } from "react-hook-form";
 import { HiMiniInformationCircle } from "react-icons/hi2";
 import axios from "axios";
+import { post } from '../../utilis/queries';
 
 const image_hosting_key = "bb3f3b7c9ba5aa6d4945a14c12a429aa";
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -8,9 +10,33 @@ const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_ke
 const CreateBidding = () => {
   const { register, handleSubmit } = useForm();
 
+  const [product,setProduct] = useState({
+    name:'',
+    weight:0,
+    starting_price:0,
+    image:'',
+    location:'',
+    type_of_waste:"",
+    starting_time:0,
+    bidding_duration:0
+  })
+
   const onSubmit = async (data) => {
     const imageFile = { image: data.image[0] };
-    const res = await axios.post(image_hosting_api, imageFile, {
+    console.log(imageFile.image);
+    const formData = new FormData()
+    formData.append("name",data.name)
+    formData.append("weight",parseFloat(data.weight))
+    formData.append("type_of_waste",data.type_of_waste)
+    formData.append("location",data.location)
+    formData.append("image",imageFile.image)
+    formData.append("starting_price",data.starting_price)
+    formData.append("starting_time",data.starting_time)
+    formData.append("bidding_duration",parseInt(data.bidding_duration))
+    const result = await post("products/create-product",formData)
+    console.log(formData)
+    console.log(result)
+    /* const res = await axios.post(image_hosting_api, imageFile, {
       headers: {
         "content-type": "multipart/form-data",
       },
@@ -25,7 +51,7 @@ const CreateBidding = () => {
       console.log(data);
     } else {
       console.log("Error uploading image");
-    }
+    } */
   };
 
   return (

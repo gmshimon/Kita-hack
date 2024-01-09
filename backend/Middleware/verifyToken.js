@@ -1,8 +1,8 @@
 var admin = require('firebase-admin')
 
 // firebase admin initialization
-var serviceAccount = require('../kita-hack-firebase-credentials.json')
-// var serviceAccount = require('../fir-practise-f9311-firebase-adminsdk-pgwft-67ed2d1226.json')
+// var serviceAccount = require('../kita-hack-firebase-credentials.json')
+var serviceAccount = require('../fir-practise-f9311-firebase-adminsdk-pgwft-67ed2d1226.json')
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount)
 })

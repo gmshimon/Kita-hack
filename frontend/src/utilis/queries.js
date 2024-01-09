@@ -25,8 +25,7 @@ export const get = async(url)=>{
     let error = false
     const storedToken = localStorage.getItem('userToken');
     const {token} = JSON.parse(storedToken)
-    console.log(token)
-    await fetch(`${BASE_URL}/products`,{
+    await fetch(`${BASE_URL}/${url}`,{
         method:'GET',
         headers:{
             Authorization: 'Bearer ' + token
@@ -37,8 +36,22 @@ export const get = async(url)=>{
         if(data.status!==200)
             error=true
         returnData = data.data
-        console.log(data)
     })
     return {returnData,error}
 }
 
+export const post = async(url,obj)=>{
+    let returnData
+    const storedToken = localStorage.getItem('userToken');
+    const {token} = JSON.parse(storedToken)
+    await fetch(`${BASE_URL}/${url}`,{
+        method:"POST",
+        headers:{
+            Authorization: 'Bearer ' + token
+        },
+        body: obj
+    })
+    .then(res=>res.json())
+    .then(data=>returnData=data)
+return returnData
+}

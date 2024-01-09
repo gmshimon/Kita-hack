@@ -42,6 +42,10 @@ const ProductSchema = mongoose.Schema({
     type: Number,
     required: [true, 'Please provide item weight']
   },
+  postStatus:{
+    type:String,
+    required: [true, 'Please provide product status']
+  },
   starting_price: {
     type: Number,
     required: [true, 'Please provide starting price']
@@ -71,6 +75,18 @@ const ProductSchema = mongoose.Schema({
   active: {
     type: Boolean
   },
+  winner:{
+    company:{
+      type:ObjectId,
+      ref: 'User'
+    },
+    price:{
+      type:Number
+    },
+    date:{
+      type:String,
+    }
+  },
   bids: [
     {
       company: {
@@ -78,7 +94,7 @@ const ProductSchema = mongoose.Schema({
         ref: 'User'
       },
       price: {
-        type: String,
+        type: Number,
         required: [true, 'Please provide a valid price']
       },
       date: {
