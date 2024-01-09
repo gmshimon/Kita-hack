@@ -92,7 +92,7 @@ module.exports.getAllProducts = async (req, res, next) => {
         select: 'fullName email _id position'
       })
       .populate({
-        path:'winner.company',
+        path: 'winner.company',
         select: 'fullName email _id companyName'
       })
       .populate({
@@ -140,6 +140,10 @@ module.exports.getSingleProduct = async (req, res, next) => {
       )
     }
     const result2 = await Product.findOne({ _id: id })
+      .populate({
+        path: 'bids.company',
+        select: 'fullName email _id companyName'
+      })
     res.status(200).json({
       status: 'Success',
       message: 'Data successfully retrieved',
@@ -165,8 +169,8 @@ module.exports.makeBidding = async (req, res, next) => {
     const email = req.user
     const body = req.body
 
-console.log(req)
-console.log(email)
+    console.log(req)
+    console.log(email)
     // get the product first
     const product = await Product.findOne({ _id: body.productId })
     // find the user
@@ -212,12 +216,16 @@ console.log(email)
         message: 'Failed to update the bidding'
       })
     }
-    const updateUser = await User.updateOne({_id: user._id},
-      {$push:{bids:{
-        product: product._id,
-        price:body.price
-      }}}
-      )
+    const updateUser = await User.updateOne({ _id: user._id },
+      {
+        $push: {
+          bids: {
+            product: product._id,
+            price: body.price
+          }
+        }
+      }
+    )
     res.status(200).json({
       status: 'success',
       message: product
@@ -231,12 +239,12 @@ console.log(email)
 }
 
 
-module.exports.getUserBidding = async (req,res,next)=>{
+module.exports.getUserBidding = async (req, res, next) => {
   try {
     const email = req.user
 
-    const user = await User.findOne({ email: email})
-    const result = await Product.findOne({createdBy:user?._id})
+    const user = await User.findOne({ email: email })
+    const result = await Product.findOne({ createdBy: user?._id })
 
     const dateCompare = compareDate(
       result.starting_time,
@@ -262,22 +270,22 @@ module.exports.getUserBidding = async (req,res,next)=>{
       )
     }
 
-    const product = await Product.findOne({createdBy:user?._id}).populate({
+    const product = await Product.findOne({ createdBy: user?._id }).populate({
       path: 'createdBy',
       select: 'fullName email _id position'
     })
-    .populate({
-      path:'winner.company',
-      select: 'fullName email _id companyName'
-    })
-    .populate({
-      path: 'bids.company',
-      select: 'fullName email _id companyName'
-    })
+      .populate({
+        path: 'winner.company',
+        select: 'fullName email _id companyName'
+      })
+      .populate({
+        path: 'bids.company',
+        select: 'fullName email _id companyName'
+      })
     res.status(200).json({
-      status:"success",
-      message:"Product was successfully fetched",
-      data:product
+      status: "success",
+      message: "Product was successfully fetched",
+      data: product
     })
   } catch (error) {
     res.status(400).json({
