@@ -42,12 +42,14 @@ export const get = async(url)=>{
 }
 
 export const post = async(url,obj)=>{
+    console.log(obj)
     let returnData
     const storedToken = localStorage.getItem('userToken');
     const {token} = JSON.parse(storedToken)
     await fetch(`${BASE_URL}/${url}`,{
         method:"POST",
         headers:{
+            'Content-Type': 'application/json',
             Authorization: 'Bearer ' + token
         },
         body: obj

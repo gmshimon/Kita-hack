@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { IoAlertCircle } from "react-icons/io5";
+import { post } from '../../utilis/queries';
 
 
 const ProductDetail = () => {
@@ -25,8 +26,16 @@ const ProductDetail = () => {
     const { data: { _id, name, location, postStatus, starting_price, starting_time, type_of_waste, weight, imageURL } } = product;
 
 
-    const handleBid = () => {
+    const handleBid = async () => {
         console.log('Bid submitted:', bidAmount);
+        const data = {
+            productId:productId,
+            price:parseFloat(bidAmount),
+        }
+        
+        const result = await post("products/make-bidding",JSON.stringify(data));
+    
+
         document.getElementById('my_modal_2').close();
     };
 

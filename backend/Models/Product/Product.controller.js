@@ -165,17 +165,19 @@ module.exports.makeBidding = async (req, res, next) => {
     const email = req.user
     const body = req.body
 
+console.log(req)
+console.log(email)
     // get the product first
     const product = await Product.findOne({ _id: body.productId })
     // find the user
     const user = await User.findOne({ email: email })
 
-    if (!product?.active) {
-      return res.status(401).json({
-        status: 'Fail',
-        message: 'The bidding date closed'
-      })
-    }
+    // if (!product?.active) {
+    //   return res.status(401).json({
+    //     status: 'Fail',
+    //     message: 'The bidding date closed'
+    //   })
+    // }
 
     if (body.price < product.starting_price) {
       return res.status(401).json({
