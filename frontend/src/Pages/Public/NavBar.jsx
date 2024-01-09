@@ -5,6 +5,7 @@ import { FaSignOutAlt, FaTimes, FaUserAlt } from "react-icons/fa";
 import { CiMenuFries } from "react-icons/ci";
 import { MdDashboard } from "react-icons/md";
 import { AuthContext } from "../../providers/AuthProvider";
+import "./Navbar.css";
 
 const NavBar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -84,24 +85,19 @@ const NavBar = () => {
             </div>
           </li>
 
-          <NavLink>
+          <NavLink to={"/"}>
             <li className="my-4 py-4 border-b font-semibold hover:text-white border-primary hover:bg-primary hover:rounded">
               Home
             </li>
           </NavLink>
-          <NavLink>
+          <NavLink to={"/solution"}>
             <li className="my-4 py-4 border-b font-semibold hover:text-white border-primary hover:bg-primary hover:rounded">
-              Bidding
+              Our Solution
             </li>
           </NavLink>
-          <NavLink>
+          <NavLink to={"/all-biddings"}>
             <li className="my-4 py-4 border-b font-semibold hover:text-white border-primary hover:bg-primary hover:rounded">
-              About
-            </li>
-          </NavLink>
-          <NavLink>
-            <li className="my-4 py-4 border-b font-semibold hover:text-white border-primary hover:bg-primary hover:rounded">
-              Contact
+              Active Listings
             </li>
           </NavLink>
         </ul>
@@ -119,24 +115,19 @@ const NavBar = () => {
           <div className="lg:flex md:flex lg:flex-1 items-center justify-end font-normal hidden">
             <div className="">
               <ul className="flex items-center gap-2 md:gap-4 lg:gap-8 font-medium font-heading text-[18px]">
-                <NavLink>
-                  <li className="hover:text-primary transition border-b-2 border-primary hover:border-primary cursor-pointer">
+                <NavLink to={"/"}>
+                  <li className="hover:text-primary transition border-b-2 border-transparent hover:border-primary cursor-pointer">
                     Home
                   </li>
                 </NavLink>
-                <NavLink>
-                  <li className="hover:text-primary transition border-b-2 border-primary hover:border-primary cursor-pointer">
-                    Bidding
+                <NavLink to={"/solution"}>
+                  <li className="hover:text-primary transition border-b-2 border-transparent hover:border-primary cursor-pointer">
+                    Our Solution
                   </li>
                 </NavLink>
-                <NavLink>
-                  <li className="hover:text-primary transition border-b-2 border-primary hover:border-primary cursor-pointer">
-                    About
-                  </li>
-                </NavLink>
-                <NavLink>
-                  <li className="hover:text-primary transition border-b-2 border-primary hover:border-primary cursor-pointer">
-                    Contact
+                <NavLink to={"/all-biddings"}>
+                  <li className="hover:text-primary transition border-b-2 border-transparent hover:border-primary cursor-pointer">
+                    Active Listings
                   </li>
                 </NavLink>
 

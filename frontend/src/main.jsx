@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 // PUBLIC IMPORTS
 import PublicRoot from "./Pages/Public/PublicRoot";
 import Home from "./Pages/Public/Home";
+import AllBiddings from "./Pages/Public/AllBiddings";
 
 // PRIVATE IMPORTS
 import DashboardHome from "./Pages/Private/DashboardHome";
@@ -29,6 +30,20 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
+      },
+      {
+        path: "/all-biddings",
+        element: <AllBiddings></AllBiddings>,
+      },
+      {
+        path: "/product/:productId",
+        element: (
+          <PrivateRoute>
+            <ProductDetail></ProductDetail>
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5173/product/${params.productId}`),
       },
     ],
   },
@@ -63,16 +78,7 @@ const router = createBrowserRouter([
       },
     ],
   },
-  {
-    path: "/product/:productId",
-    element: (
-      <PrivateRoute>
-        <ProductDetail></ProductDetail>
-      </PrivateRoute>
-    ),
-    loader: ({ params }) =>
-      fetch(`http://localhost:5173/product/${params.productId}`),
-  },
+
   {
     path: "/login",
     element: <Login></Login>,
