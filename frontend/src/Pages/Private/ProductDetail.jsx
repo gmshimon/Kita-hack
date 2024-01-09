@@ -19,29 +19,47 @@ const ProductDetail = () => {
     }
 
 
-    const { id, name, description, price, image } = product;
+    const { id, name, description, price, image, status = 'ongoing' } = product;
 
     return (
-        <div className='container mx-auto flex flex-col justify-between lg:flex-row gap-16 lg:items-center'>
-            <div className='lg:w-2/4'>
-                <img src='https://t4.ftcdn.net/jpg/02/24/11/57/240_F_224115780_2ssvcCoTfQrx68Qsl5NxtVIDFWKtAgq2.jpg' alt="" className='w-full h-full aspect-square object-cover rounded-xl' />
+        <div className=''>
+            <div className='p-12 shadow-xl rounded-xl container mx-auto flex flex-col justify-between lg:flex-row gap-16 lg:items-center'>
+                <div className='lg:w-2/4 lg:p-12 md:p-12 flex justify-center '>
+                    <img src='https://kjcdn.gumlet.io/media/70950/manure.jpg' alt="" className=' md:w-96 lg:w-[491px] w-full h-full aspect-square object-cover rounded-xl' />
 
+                </div>
+
+
+
+
+                <div className='flex flex-col gap-4 lg:w-2/4'>
+                    <span
+                        className={`badge uppercase border-none ${status === "ongoing"
+                            ? "bg-red-600"
+                            : status === "published"
+                                ? "bg-accent"
+                                : ""
+                            } font-medium text-white`}
+                    >
+                        {status}
+                    </span>
+
+                    <div>
+                        {/* title */}
+                        <h1 className='text-3xl font-bold font-text'>{name}Organic Manure - Fresh Harvest </h1>
+                    </div>
+                    <p className='text-lg font-text'>
+                        {description}Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda laudantium illo tempora doloremque hic? Sed earum veniam temporibus
+
+                    </p>
+                    <h6 className='text-2xl font-semibold'>RM {price}</h6>
+                    <div className='flex flex-row items-center '>
+
+                        <button className='bg-primary text-white font-semibold py-3 px-16 rounded-xl h-full'>Start Bidding</button>
+                    </div>
+                </div>
             </div>
 
-            <div className='flex flex-col gap-4 lg:w-2/4'>
-                <div>
-
-                    <h1 className='text-3xl font-bold font-text'>{name}OLA </h1>
-                </div>
-                <p className='text-lg font-text'>
-                    {description}party party party
-                </p>
-                <h6 className='text-2xl font-semibold'>RM {price}</h6>
-                <div className='flex flex-row items-center '>
-
-                    <button className='bg-primary text-white font-semibold py-3 px-16 rounded-xl h-full'>Start Bidding</button>
-                </div>
-            </div>
         </div>
     );
 };

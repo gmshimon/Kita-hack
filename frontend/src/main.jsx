@@ -12,7 +12,7 @@ import Solutions from "./Pages/Public/Solutions";
 // PRIVATE IMPORTS
 import DashboardHome from "./Pages/Private/DashboardHome";
 import DashboardMain from "./Pages/Private/DashboardMain";
-import CreatePosting from "./Pages/Private/CreatePosting";
+
 import Login from "./Pages/Public/Login";
 import Register from "./Pages/Public/Register";
 import ProductDetail from "./Pages/Private/ProductDetail";
@@ -65,10 +65,7 @@ const router = createBrowserRouter([
         path: "/dashboard",
         element: <DashboardMain></DashboardMain>,
       },
-      {
-        path: "/dashboard/create-posting",
-        element: <CreatePosting></CreatePosting>,
-      },
+
       {
         path: "/dashboard/analytics",
         element: <Analytics></Analytics>,

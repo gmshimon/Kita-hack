@@ -17,13 +17,12 @@ const BiddingCard = ({ card }) => {
         <div className="flex justify-between">
           {/* IMPLEMENT CONDITIONAL COLORING OF BADGE */}
           <span
-            className={`badge uppercase border-none ${
-              status === "ongoing"
+            className={`badge uppercase border-none ${status === "ongoing"
                 ? "bg-red-600"
                 : status === "published"
-                ? "bg-accent"
-                : ""
-            } font-medium text-white`}
+                  ? "bg-accent"
+                  : ""
+              } font-medium text-white`}
           >
             {status}
           </span>
