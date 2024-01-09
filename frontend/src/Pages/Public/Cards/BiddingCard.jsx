@@ -4,7 +4,7 @@ import { FaArrowRight } from "react-icons/fa6";
 const BiddingCard = ({ bids }) => {
   // NEEDS PROP TYPE
   const { _id, name, imageURL, postStatus, starting_price, type_of_waste } = bids;
-
+  console.log(imageURL)
   return (
     <div className="relative flex w-full flex-col shadow-xl rounded-xl">
       <div className="relative overflow-hidden rounded-t-xl">

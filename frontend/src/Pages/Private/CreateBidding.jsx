@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { HiMiniInformationCircle } from 'react-icons/hi2'
 import axios from 'axios'
-import { post } from '../../utilis/queries'
+import { post, post2 } from '../../utilis/queries'
 
 const image_hosting_key = 'bb3f3b7c9ba5aa6d4945a14c12a429aa'
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
@@ -45,7 +45,7 @@ const CreateBidding = () => {
     } else if (today >= startingTime && today <= endTime) {
       formData.append('postStatus', 'ongoing')
     }
-    const result = await post('products/create-product', formData)
+    const result = await post2('products/create-product', formData)
     console.log(formData)
     console.log(result)
     /* const res = await axios.post(image_hosting_api, imageFile, {
