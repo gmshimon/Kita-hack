@@ -2,16 +2,29 @@ import { useEffect, useState } from "react";
 import BiddingCard from "../Cards/BiddingCard";
 import { IoMdLeaf } from "react-icons/io";
 import { Link } from "react-router-dom";
+import { get } from "../../../utilis/queries";
 
 const MainPageCard = () => {
-  const [card, setCard] = useState([]);
 
+  // const [card, setCard] = useState([]);
+
+  // useEffect(() => {
+  //   fetch("/data.json")
+  //     .then((res) => res.json())
+  //     .then((data) => setCard(data))
+  //     .catch((error) => console.error("Error fetching data:", error));
+  // }, []);
+
+  const [bids, setBids] = useState([])
   useEffect(() => {
-    fetch("/data.json")
-      .then((res) => res.json())
-      .then((data) => setCard(data))
-      .catch((error) => console.error("Error fetching data:", error));
+    const fetchData = async () => {
+      const { returnData } = await get("products");
+      setBids(returnData);
+    };
+
+    fetchData();
   }, []);
+
 
   return (
     <>
@@ -25,8 +38,8 @@ const MainPageCard = () => {
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4"
         data-aos="fade-up"
       >
-        {card.slice(0, 4).map((card) => (
-          <BiddingCard key={card.id} card={card}></BiddingCard>
+        {bids.slice(0, 4).map((bids) => (
+          <BiddingCard key={bids._id} bids={bids}></BiddingCard>
         ))}
       </div>
       <div className="flex justify-center">

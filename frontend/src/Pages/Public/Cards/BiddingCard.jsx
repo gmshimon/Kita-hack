@@ -1,14 +1,14 @@
 import { Link } from "react-router-dom";
 import { FaArrowRight } from "react-icons/fa6";
 
-const BiddingCard = ({ card }) => {
+const BiddingCard = ({ bids }) => {
   // NEEDS PROP TYPE
-  const { id, name, image, status } = card;
+  const { _id, name, imageURL, postStatus, starting_price, type_of_waste } = bids;
 
   return (
     <div className="relative flex w-full flex-col shadow-xl rounded-xl">
       <div className="relative overflow-hidden rounded-t-xl">
-        <img className="object-cover w-full h-48 " src={image} />
+        <img className="object-cover w-full h-48 " src={imageURL} />
       </div>
       <div className="p-2 rounded-b-xl">
         <p className="block text-lg font-semibold font-heading flex-1">
@@ -17,27 +17,26 @@ const BiddingCard = ({ card }) => {
         <div className="flex justify-between">
           {/* IMPLEMENT CONDITIONAL COLORING OF BADGE */}
           <span
-            className={`badge uppercase border-none ${status === "ongoing"
-                ? "bg-red-600"
-                : status === "published"
-                  ? "bg-accent"
-                  : ""
+            className={`badge uppercase border-none ${postStatus === "ongoing"
+              ? "bg-red-600"
+              : postStatus === "published"
+                ? "bg-accent"
+                : ""
               } font-medium text-white`}
           >
-            {status}
+            {postStatus}
           </span>
           <span className="badge border-none bg-primary font-medium text-white">
-            RM 35.00
+            RM {starting_price}
           </span>
         </div>
         <hr className="my-2" />
         <p className="font-text text-xs text-gray-600">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda
-          laudantium illo tempora doloremque hic? Sed earum veniam temporibus
+          {type_of_waste}
         </p>
         <div className="flex-1 flex justify-end items-end mt-4">
           <Link
-            to={`/product/${id}`}
+            to={`/product/${_id}`}
             className="btn border-none bg-transparent"
           >
             View
