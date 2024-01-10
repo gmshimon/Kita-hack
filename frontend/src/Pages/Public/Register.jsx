@@ -37,18 +37,39 @@ const Register = () => {
   // FIREBASE FUNCTION FOR REGISTERING
   const { createUser } = useContext(AuthContext)
 
-  const handleSellerSubmit = async e => {
-    e.preventDefault()
-    if (userType === 'seller') {
-      const { user, error } = createUser(seller, password)
-      if (user) navigate('/')
-      setError(error)
-    } else if (userType === 'buyer') {
-      const { user, error } = createUser(buyer, password)
-      if (user) navigate('/')
-      setError(error)
+
+  const handleSellerSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      if (userType === 'seller') {
+        const { user, error } = await createUser(seller, password);
+
+        if (user) {
+
+          navigate('/');
+        } else {
+          setError(error);
+        }
+      } else if (userType === 'buyer') {
+        const { user, error } = await createUser(buyer, password);
+
+        if (user) {
+
+          navigate('/');
+        } else {
+          setError(error);
+        }
+      }
+    } catch (error) {
+
+      console.error('Error during user creation:', error);
+      setError('An error occurred during user creation.');
     }
-  }
+  };
+
+
+
   return (
     <>
       <div className='min-h-screen flex justify-center p-24'>

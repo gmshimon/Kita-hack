@@ -64,13 +64,12 @@ const ProductDetail = () => {
         <div className="flex flex-col gap-4 lg:w-2/4">
           <div className="flex flex-col gap-4 shadow-xl rounded-xl p-12">
             <span
-              className={`badge uppercase border-none ${
-                postStatus === "ongoing"
+              className={`badge uppercase border-none ${postStatus === "ongoing"
                   ? "bg-red-600"
                   : postStatus === "published"
-                  ? "bg-accent"
-                  : ""
-              } font-medium text-white`}
+                    ? "bg-accent"
+                    : ""
+                } font-medium text-white`}
             >
               {postStatus}
             </span>
@@ -93,11 +92,10 @@ const ProductDetail = () => {
                 onClick={() =>
                   document.getElementById("my_modal_2").showModal()
                 }
-                className={`bg-primary text-white font-semibold py-3 px-16 rounded-xl h-full ${
-                  postStatus === "ongoing"
+                className={`bg-primary text-white font-semibold py-3 px-16 rounded-xl h-full ${postStatus === "ongoing"
                     ? ""
                     : "btn-disabled bg-gray-600 opacity-20"
-                }`}
+                  }`}
               >
                 Start Bidding
               </button>
