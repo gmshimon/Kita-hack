@@ -18,6 +18,7 @@ connectDB()
 
 const userRouter = require('./Models/User/User.routes.js')
 const productRouter = require('./Models/Product/Product.route')
+const BardRouter = require('./Models/BardAI/BardAI.route')
 
 app.get('/', (req, res) => {
   res.send('Welcome to Kita Hack')
@@ -35,4 +36,5 @@ app.listen(PORT, () => {
   console.log('Listening on port ', PORT)
   app.use('/api/v1/users', userRouter)
   app.use('/api/v1/products', productRouter)
+  app.use('/api/v1',BardRouter)
 })

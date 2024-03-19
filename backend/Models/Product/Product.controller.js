@@ -27,7 +27,7 @@ module.exports.postProducts = async (req, res, next) => {
     // TODO: get the user email from token
     const email = req.user
     const data = req.body
-
+    console.log(req.file)
     // get the user data
     const user = await User.findOne({ email: email })
     const image =
